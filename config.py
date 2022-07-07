@@ -6,7 +6,7 @@ class Config(object):
     SECRET_KEY = 'dd2XG7wZQjrvjy4qm3iIl5j1xBieutG27ta+Vtpbgeg9RSBRur1CFg5Zq6m0X5XViNZl/ccXN+Nz+ASt+RocpA=='
 
     BLOB_ACCOUNT = 'udacitycmsstorage'
-    BLOB_STORAGE_KEY = 'sp=r&st=2022-07-06T13:47:50Z&se=2022-07-06T21:47:50Z&sv=2021-06-08&sr=c&sig=6pkzV760kv7l15jQ3d7py5GvjazU0SYqbgEWHvPkfqs%3D'
+    BLOB_STORAGE_KEY = 'dd2XG7wZQjrvjy4qm3iIl5j1xBieutG27ta+Vtpbgeg9RSBRur1CFg5Zq6m0X5XViNZl/ccXN+Nz+ASt+RocpA=='
     BLOB_CONTAINER = 'images'
 
     SQL_SERVER = 'udacity-cms-server.database.windows.net'
