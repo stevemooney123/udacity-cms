@@ -3,6 +3,8 @@ from FlaskWebProject import app, db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from azure.storage.blob import BlockBlobService
+from azure.storage.file import ContentSettings
+import os
 import string, random
 from werkzeug.utils import secure_filename
 from flask import flash
@@ -53,17 +55,16 @@ class Post(db.Model):
 
         if file:
             filename = secure_filename(file.filename);
-            fileextension = filename.rsplit('.',1)[1];
-            Randomfilename = id_generator();
-            filename = Randomfilename + '.' + fileextension;
+            "C:\\Users\\steph\\Downloads\\" + filename
             try:
-                blob_client = blob_service.get_blob_client(container=blob_container, blob=filename)
-                blob_client.upload_blob(file)
+                content_settings = ContentSettings(content_type="image/jpg")
+                blob_service.create_blob_from_path("images", "myblockblob", filename, content_settings)
                 if(self.image_path):
-                    blob_client = blob_service.get_blob_client(container=blob_container, blob=self.image_path)
-                    blob_client.delete_blob()
-            except Exception:
-                flash(Exception)
+                    blob_service.create_blob_from_path("images", "myblockblob", filename, content_settings)
+                    blob_service.delete_blob()
+            except Exception as e:
+                flash(e)
+                print(e)
             self.image_path =  filename
         if new:
             db.session.add(self)
